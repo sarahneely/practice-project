@@ -8,8 +8,14 @@
   <label for="Subject"></label>
   <input type="text" name="subject" [(ngModel)]="query">
   <button (click)="searchPosts()">Submit</button>
+  <div>
+    <input type="text"
+      placeholder="Search List"
+      class="filter-input"
+      [(ngModel)]="searchText">
+  </div>
   <ul>
-    <li *ngFor="let post of postList">
+    <li *ngFor="let post of postList | searchBy: ['data.title']: [searchText]">
       <a href="{{post.data.url}}">
         {{ post.data.title }}
         <img src="{{post.data.thumbnail}}" alt="">
